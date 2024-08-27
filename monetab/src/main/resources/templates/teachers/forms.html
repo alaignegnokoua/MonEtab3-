@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/ajouter_teacher.css}">
+    <title>Add teacher</title>
+</head>
+<body>
+<div class="container">
+    <!-- Barre latérale -->
+    <aside class="sidebar">
+        <h2>Mon ETAB</h2>
+        <nav>
+            <ul>
+                <li><a th:href="@{/students}">&#x1F466;</i> Élèves</a></li>
+                <li><a th:href="@{/teachers}"><i class="icon-professeurs">&#x1F464;</i> Professeurs</a></li>
+                <li><a th:href="@{/users}"><i class="icon-utilisateurs">&#x1F465;</i> Utilisateurs</a></li>
+                <li><a th:href="@{/reports}"><i class="icon-rapport">&#x1F4C4;</i> Rapport</a></li>
+            </ul>
+        </nav>
+        <div class="logout">
+            <a th:href="@{/login}"><i class="icon-deconnexion">&#x1F6AA;</i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <!-- Conteneur principal pour le formulaire d'ajout de professeur -->
+    <div class="main-content">
+        <a th:href="@{/teachers}">
+            <button class="retour">Retour</button>
+        </a>
+        <h1>Ajouter un Professeur</h1>
+        <form>
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom">
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre :</label>
+                <select id="genre" name="genre">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="matricule">Matricule :</label>
+                <input type="text" id="matricule" name="matricule">
+            </div>
+            <div class="form-group">
+                <label for="date_naissance">Date de naissance :</label>
+                <input type="date" id="date_naissance" name="date_naissance">
+            </div>
+            <div class="form-group">
+                <label for="classe">Classe :</label>
+                <select id="classe" name="classe">
+                    <option value="6e">6e</option>
+                    <option value="5e">5e</option>
+                    <option value="4e">4e</option>
+                    <option value="3e">3e</option>
+                    <option value="2nde">2nde</option>
+                    <option value="1ère">1ère</option>
+                    <option value="Tle">Tle</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone">
+            </div>
+            <div class="form-group">
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville">
+            </div>
+            <!-- Boutons Annuler et Enregistrer -->
+            <div class="form-actions">
+                <button type="button" class="cancel">Annuler</button>
+                <button type="submit" class="submit">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Inclusion de Font Awesome pour les icônes -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Scripts JavaScript -->
+<script>
+    // Ajoutez ici les scripts pour gérer les actions des boutons Annuler et Enregistrer
+    document.querySelector('.cancel').addEventListener('click', function() {
+        // Logique pour annuler l'ajout et revenir à la page précédente ou effacer les champs
+        window.location.href = '#'; // redirige vers la page souhaitée
+    });
+
+    document.querySelector('.submit').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Logique pour enregistrer le nouveau professeur
+        alert('Professeur enregistré avec succès !');
+        // Vous pouvez ensuite rediriger ou rafraîchir la page
+    });
+</script>
+</body>
+</html>

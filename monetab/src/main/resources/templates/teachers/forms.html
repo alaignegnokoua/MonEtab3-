@@ -31,46 +31,46 @@
         <a th:href="@{/teachers}">
             <button class="retour">Retour</button>
         </a>
-        <h1>Ajouter un Professeur</h1>
-        <form>
+        <h1 th:text="${teacher.id==null}?'Ajouter un Professeur' : 'Modifier un Professeur' "></h1>
+
+        <form th:object="${teacher}" th:action="@{/teachers}" method="post">
+
+            <input th:field="*{id}" type="text" hidden>
+
             <div class="form-group">
-                <label for="nom">Nom :</label>
-                <input type="text" id="nom" name="nom">
+                <label for="firstName">Nom :</label>
+                <input th:field="*{firstName}" type="text" id="firstName" name="firstName">
             </div>
             <div class="form-group">
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom">
+                <label for="lastName">Prénom :</label>
+                <input th:field="*{lastName}" type="text" id="lastName" name="lastName">
             </div>
             <div class="form-group">
                 <label for="genre">Genre :</label>
                 <select id="genre" name="genre">
-                    <option value="homme">Homme</option>
-                    <option value="femme">Femme</option>
+                    <option th:field="*{genre}" value="homme">Homme</option>
+                    <option th:field="*{genre}" value="femme">Femme</option>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="matricule">Matricule :</label>
-                <input type="text" id="matricule" name="matricule">
             </div>
             <div class="form-group">
                 <label for="date_naissance">Date de naissance :</label>
                 <input type="date" id="date_naissance" name="date_naissance">
             </div>
             <div class="form-group">
-                <label for="classe">Classe :</label>
-                <select id="classe" name="classe">
-                    <option value="6e">6e</option>
-                    <option value="5e">5e</option>
-                    <option value="4e">4e</option>
-                    <option value="3e">3e</option>
-                    <option value="2nde">2nde</option>
-                    <option value="1ère">1ère</option>
-                    <option value="Tle">Tle</option>
+                <label for="matiere">Matiere:</label>
+                <select th:field="*{matiere}" id="matiere" name="matiere">
+
+                    <option th:field="*{matiere}" value="Merise">Merise</option>
+                    <option th:field="*{matiere}" value="Mathematique">Mathematique</option>
+                    <option th:field="*{matiere}" value="Anglais">Anglais</option>
+                    <option th:field="*{matiere}" value="Photoshop">Photoshop</option>
+                    <option th:field="*{matiere}" value="Algorithmes">Algorithmes</option>
+
                 </select>
             </div>
             <div class="form-group">
-                <label for="telephone">Téléphone :</label>
-                <input type="tel" id="telephone" name="telephone">
+                <label for="gmail">Gmail :</label>
+                <input th:field="*{gmail}" type="gmail" id="gmail" name="gmail">
             </div>
             <div class="form-group">
                 <label for="ville">Ville :</label>
@@ -78,8 +78,8 @@
             </div>
             <!-- Boutons Annuler et Enregistrer -->
             <div class="form-actions">
-                <button type="button" class="cancel">Annuler</button>
-                <button type="submit" class="submit">Enregistrer</button>
+                <button type="button" >Annuler</button>
+                <button type="submit" >Enregistrer</button>
             </div>
         </form>
     </div>

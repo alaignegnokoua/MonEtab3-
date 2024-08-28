@@ -53,7 +53,7 @@
                 <td th:text="${teacher.gmail}"></td>
                 <td>
                     <div class="action-buttons">
-                        <a th:href="@{/teachers/add}">
+                        <a th:href="@{/teachers/{id}(id=${teacher.id})}">
                             <button class="btn-modifier">Modifier</button>
                         </a>
                         <button class="btn-supprimer">Supprimer</button>

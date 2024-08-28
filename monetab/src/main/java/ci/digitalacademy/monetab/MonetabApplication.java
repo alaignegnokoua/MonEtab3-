@@ -85,18 +85,21 @@ public class MonetabApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Student student = new Student();
 		student.setMatricule("AG001");
-		student.setGmail("lelouch32@gmail.com");
 		student.setFirstName("sitionon");
 		student.setLastName("anicet");
 		student.setClasse("ADA");
-
+		student.setGenre("Masculin");
+		student.setTelephone("0575956281");
+		student.setGmail("orange@gmail.com");
 
 		Student student1 = new Student();
 		student1.setMatricule("AG002");
-		student1.setGmail("zouzouko01@gmail.com");
 		student1.setFirstName("liade");
 		student1.setLastName("jean-phillippe");
 		student1.setClasse("ADAS");
+		student1.setGenre("Masculin");
+		student1.setTelephone("0555899892");
+		student1.setGmail("moov@gmail.com");
 
 		studentService.save(student);
 		studentService.save(student1);
@@ -108,13 +111,14 @@ public class MonetabApplication implements CommandLineRunner {
 		teacher.setGmail("laboss42@gmail.com");
 		teacher.setFirstName("Kouakou");
 		teacher.setLastName("bertin");
-
+		teacher.setGenre("Masculin");
 
 		Teacher teacher1 = new Teacher();
 		teacher1.setMatiere("Merise");
 		teacher1.setGmail("zouzouko01@gmail.com");
 		teacher1.setFirstName("liade");
 		teacher1.setLastName("jean-phillippe");
+		teacher1.setGenre("Masculin");
 
 		teacherService.save(teacher);
 		teacherService.save(teacher1);

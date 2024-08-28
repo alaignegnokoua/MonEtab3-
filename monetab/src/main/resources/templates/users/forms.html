@@ -29,14 +29,20 @@
         <a th:href="@{/users}">
             <button class="retour">Retour</button>
         </a>
-        <h1>Ajouter un Utilisateur</h1>
-        <form id="addUserForm">
-            <label for="pseudo">Pseudo:</label>
-            <input type="text" id="pseudo" name="pseudo" placeholder="Entrez le pseudo">
+        <h1 th:text="${user.id==null}?'Ajouter un Utilisateur' : 'Modifier un Utilisateur' "></h1>
+        <form th:object="${user}" th:action="@{/users}" method="post" >
 
-            <label for="creationDate">Date de Création:</label>
-            <input type="date" id="creationDate" name="creationDate">
+            <input th:field="*{id}" type="text" hidden>
+            <div class="form-group">
 
+            <label  for="pseudo">Pseudo:</label>
+            <input th:field="*{pseudo}" type="text" id="pseudo" name="pseudo" placeholder="Entrez le pseudo">
+
+                <div class="form-group">
+                    <label  for="password">Password:</label>
+                    <input th:field="*{password}" type="text" id="password" name="pseudo" placeholder="Entrez le password">
+
+                </div>
             <div class="btn-container">
                 <button type="button" class="btn cancel">Annuler</button>
                 <button type="submit" class="btn save">Enregistrer</button>

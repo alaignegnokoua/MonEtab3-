@@ -32,27 +32,32 @@
         <a th:href="@{/students}">
             <button class="retour">Retour</button>
         </a>
-        <h1>Ajouter un Élève</h1>
+        <h1 th:text="${student.id==null}?'Ajouter un Élève': 'Modifier un Elève'"></h1>
+
+        <form th:object="${student}" th:action="@{/students}" method="post">
+
+            <input th:field="*{id}" type="text" hidden>
+
         <!-- Formulaire pour ajouter un élève -->
         <div class="form-container">
             <div class="form-group">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" placeholder="Entrez le nom">
+                <label for="fistName">Nom</label>
+                <input th:field="*{firstName}" type="text" id="fistName" name="firstName" placeholder="Entrez le nom">
             </div>
             <div class="form-group">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom">
+                <label for="lastName">Prénom</label>
+                <input th:field="*{lastName}" type="text" id="lastName" name="lastName" placeholder="Entrez le prénom">
             </div>
             <div class="form-group">
-                <label>Genre</label>
-                <input type="radio" id="homme" name="genre" value="Homme">
-                <label for="homme">Homme</label>
-                <input type="radio" id="femme" name="genre" value="Femme">
-                <label for="femme">Femme</label>
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre">
+                    <option th:field="*{genre}" value="homme">Homme</option>
+                    <option th:field="*{genre}" value="femme">femme</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="matricule">Matricule</label>
-                <input type="text" id="matricule" name="matricule" placeholder="Entrez le matricule">
+                <input th:field="*{matricule}" type="text" id="matricule" name="matricule" placeholder="Entrez le matricule">
             </div>
             <div class="form-group">
                 <label for="date-naissance">Date de Naissance</label>
@@ -60,19 +65,25 @@
             </div>
             <div class="form-group">
                 <label for="classe">Classe</label>
-                <select id="classe" name="classe">
-                    <option value="6e">6ème</option>
-                    <option value="5e">5ème</option>
-                    <option value="4e">4ème</option>
-                    <option value="3e">3ème</option>
-                    <option value="2nde">2nde</option>
-                    <option value="1ere">1ère</option>
-                    <option value="Tle">Terminale</option>
+                <select th:field="*{classe}" id="classe" name="classe">
+
+                    <option th:field="*{classe}" value="6e">6ème</option>
+                    <option th:field="*{classe}" value="5e">5ème</option>
+                    <option th:field="*{classe}" value="4e">4ème</option>
+                    <option th:field="*{classe}" value="3e">3ème</option>
+                    <option th:field="*{classe}" value="2nde">2nde</option>
+                    <option th:field="*{classe}" value="1ere">1ère</option>
+                    <option th:field="*{classe}" value="Tle">Terminale</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="gmail">Gmail :</label>
+                <input th:field="*{gmail}" type="text" id="gmail" name="gmail">
             </div>
             <div class="form-group">
                 <label for="telephone">Téléphone</label>
-                <input type="text" id="telephone" name="telephone" placeholder="Entrez le numéro de téléphone">
+                <input th:field="*{telephone}" type="text" id="telephone" name="telephone" placeholder="Entrez le numéro de téléphone">
             </div>
             <div class="form-group">
                 <label for="ville">Ville</label>

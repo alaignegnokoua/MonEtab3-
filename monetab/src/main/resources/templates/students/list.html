@@ -41,31 +41,26 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Matricule</th>
-                <th>Téléphone</th>
-                <th>Ville</th>
-                <th></th>
+                <th>Classe</th>
+                <th>Gmail</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <!-- Ligne 1 d'exemple -->
             <tr th:each="student:${students}">
-                <td th:text="${student.lastName}"></td>
                 <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
                 <td th:text="${student.matricule}"></td>
                 <td th:text="${student.classe}"></td>
                 <td th:text="${student.gmail}"></td>
-                <td></td>
-                <td></td>
                 <td>
                     <div class="action-buttons">
-                        <a th:href="@{/students/add}">
+                        <a th:href="@{/students/{id}(id=${student.id})}">
                             <button class="btn-modifier">Modifier</button>
                         </a>
                         <button class="btn-supprimer">Supprimer</button>
                     </div>
-                </td>
-
                 </td>
             </tr>
             </tbody>

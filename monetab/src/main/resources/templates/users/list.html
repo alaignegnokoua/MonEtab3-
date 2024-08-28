@@ -44,8 +44,15 @@
             <tr>
             <tr th:each="user:${users}">
                 <td th:text="${user.pseudo}"></td>
-                <td th:text="${user.password}"></td>
                 <td th:text="${#dates.format(user.getCreationDate(),'d MMMM YYYY')}"></td>
+
+                <td>
+                    <div class="action-buttons">
+                        <a th:href="@{/users/{id}(id=${user.id})}">
+                            <button class="btn-modifier">Modifier</button>
+                        </a>
+                        <button class="btn-supprimer">Supprimer</button>
+                    </div>
                 </td>
             </tr>
             <tr>

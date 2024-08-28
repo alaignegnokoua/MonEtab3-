@@ -24,6 +24,8 @@ public class Teacher extends Person {
     @Column(name="matiere", nullable=false)
     private String matiere;
 
+    @Column(name="genre" , nullable = false)
+    private String genre;
     /*
     @OneToMany(fetch = FetchType.EAGER,mappedBy ="teacher")
     private Set<FicheNote> ficheNotes;

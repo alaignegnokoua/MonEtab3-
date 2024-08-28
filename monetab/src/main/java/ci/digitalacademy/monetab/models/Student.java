@@ -28,4 +28,10 @@ public class Student extends Person{
 
     @Column(name="matricule")
     private String matricule;
+
+    @Column(name="genre")
+    private String genre;
+
+    @Column(name = "telephone")
+    private String telephone;
 }

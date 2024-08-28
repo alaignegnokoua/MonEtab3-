@@ -7,9 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -27,7 +30,40 @@ public class TeachersController {
     }
 
     @GetMapping("/add")
-    public String showAddTeacherPage() {
+    public String showAddTeacherforms(Model model) {
+        log.debug("Request to show teacher forms");
+        model.addAttribute("teacher", new Teacher());
         return "teachers/forms";
+    }
+
+    @PostMapping
+
+    public String saveTeacher(Teacher teacher) {
+        log.debug("Request to save teacher : {}", teacher);
+        teacherService.save(teacher);
+        return "redirect:/teachers";
+    }
+
+    @GetMapping("/{id}")
+
+    private String showUpdateTeacherForms(Model model, @PathVariable Long id) {
+
+        Optional<Teacher> teacher = teacherService.findOne(id);
+
+        if (teacher.isPresent()) {
+            model.addAttribute("teacher", teacher.get());
+
+            return "teachers/forms";
+        } else {
+            return "redirect:/teachers";
+        }
+    }
+
+
+    @PostMapping("/delete/{id}")
+    public String deleteTeacher(@PathVariable Long id) {
+        log.debug("Request to delete teacher {}", id);
+        teacherService.delete(id);
+        return "redirect:/teachers";
     }
 }

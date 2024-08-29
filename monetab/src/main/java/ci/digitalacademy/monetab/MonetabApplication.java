@@ -17,7 +17,16 @@ import java.util.Set;
 @SpringBootApplication
 public class MonetabApplication implements CommandLineRunner {
 
-	@Autowired
+	public static void main(String[] args) {
+		SpringApplication.run(MonetabApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+	}
+}
+/*	@Autowired
 	private TeacherService teacherService;
 
 	@Autowired
@@ -40,13 +49,19 @@ public class MonetabApplication implements CommandLineRunner {
 		SpringApplication.run(MonetabApplication.class, args);
 	}
 
-	/*
+	@Override
+	public void run(String... args) throws Exception {
+
+	}
+}
+
+
 
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		/*FicheNote noteFile1 = new FicheNote();
+		FicheNote noteFile1 = new FicheNote();
 		noteFile1.setNote(12);
 		noteFile1.setAnnee(2023);
 		FicheNote noteFile2 = new FicheNote();
@@ -78,7 +93,7 @@ public class MonetabApplication implements CommandLineRunner {
 		teacher.setFicheNotes(ficheNoteSet);
 		teacherService.save(teacher);
 
-		*/
+
 
 
 	@Override
@@ -137,10 +152,11 @@ public class MonetabApplication implements CommandLineRunner {
 		user1.setPassword("Debo2021");
 		user1.setCreationDate(Instant.now());
 
-		userService.save(user);
+		userService.save(User);
 		userService.save(user1);
 
 
-	}
-}
+	} */
+
+
 

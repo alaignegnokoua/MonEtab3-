@@ -19,13 +19,15 @@ public class Teacher extends Person {
    /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long id;*/
+    ;*/
+
+    private Long id;
 
     @Column(name="matiere", nullable=false)
     private String matiere;
 
-    @Column(name="genre" , nullable = false)
-    private String genre;
+    //@Column(name="genre" , nullable = false)
+   // private String genre;
     /*
     @OneToMany(fetch = FetchType.EAGER,mappedBy ="teacher")
     private Set<FicheNote> ficheNotes;

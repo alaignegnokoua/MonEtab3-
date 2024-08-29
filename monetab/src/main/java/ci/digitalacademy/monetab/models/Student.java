@@ -23,6 +23,7 @@ public class Student extends Person{
 
      */
 
+    private Long id;
     @Column(name="classe")
     private String classe;
 

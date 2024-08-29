@@ -59,18 +59,32 @@
                         <a th:href="@{/students/{id}(id=${student.id})}">
                             <button class="btn-modifier">Modifier</button>
                         </a>
-                        <button class="btn-supprimer">Supprimer</button>
+                        <button class="btn-supprimer btn-modal" data-target="#modal-1">Supprimer</button>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </main>
+    <div th:each="student : ${students}" class="modal" id="modal-1">
+        <div class="modal-content">
+            <span class="close" data-target="#modal-1">&times;</span>
+            <h2>ATTENTION !!!</h2>
+            <p>Voulez-vous supprimer cet élève ?</p>
+            <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post">
+                <div class="action-buttons">
+                    <button type="button" class="btn-supprimer close" data-target="#modal-1">Non</button>
+                    <button type="submit" class="btn-modifier">Oui</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<script>
+<script th:src="@{/script.js}">
     // Ici, tu pourrais ajouter des scripts pour gérer les actions de modification et suppression,
     // ou pour charger dynamiquement les données des élèves depuis une base de données ou une API.
 </script>
+
 </body>
 </html>

@@ -192,3 +192,46 @@ th {
      float: right;
      margin-right: 80px;
  }
+
+ /* Le Modal (caché par défaut) */
+ .modal {
+     display: none; /* Masquer par défaut */
+     position: fixed; /* Rester en place */
+     z-index: 1; /* Placer au-dessus du contenu */
+     left: 0;
+     top: 0;
+     width: 100%; /* Largeur complète */
+     height: 100%; /* Hauteur complète */
+     overflow: auto; /* Activer le défilement si nécessaire */
+     background-color: rgb(0,0,0); /* Fond noir */
+     background-color: rgba(0,0,0,0.4); /* Fond noir avec transparence */
+ }
+
+ /* Contenu du Modal */
+ .modal-content {
+     background-color: #fefefe;
+     margin: 15% auto; /* 15% du haut et centré horizontalement */
+     padding: 20px;
+     border: 1px solid #888;
+     border-radius: 10px;
+     width: 30%; /* Largeur du modal */
+ }
+
+ .modal h2, p {
+     text-align: center;
+ }
+
+ /* Le bouton pour fermer le modal */
+ .close {
+     color: #aaa;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+ }
+
+ .close:hover,
+ .close:focus {
+     color: black;
+     text-decoration: none;
+     cursor: pointer;
+ }

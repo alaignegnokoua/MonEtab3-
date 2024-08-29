@@ -2,6 +2,7 @@ package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.User;
 import ci.digitalacademy.monetab.services.UserService;
+import ci.digitalacademy.monetab.services.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class UsersController {
 
     @GetMapping
     public String showUsersPage(Model model) {
-        List<User> users = userService.findAll();
+        List<UserDTO> users = userService.findAll();
         model.addAttribute("users", users);
         return "users/list";
     }
@@ -29,13 +30,13 @@ public class UsersController {
     @GetMapping("/add")
     public String showUsersAddforms(Model model) {
         log.debug("Request to show users forms");
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDTO());
         return "users/forms";
     }
 
     @PostMapping
 
-    public String saveUser(User user) {
+    public String saveUser(UserDTO user) {
         log.debug("Request to save user : {}", user);
         user.setCreationDate(Instant.now());
         userService.save(user);
@@ -46,7 +47,7 @@ public class UsersController {
 
     private String showUpdateUserForm(Model model, @PathVariable long id) {
 
-        Optional<User> user= userService.findOne(id);
+        Optional<UserDTO> user= userService.findOne(id);
 
         if(user.isPresent()) {
 

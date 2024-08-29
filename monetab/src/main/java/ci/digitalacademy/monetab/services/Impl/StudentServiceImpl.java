@@ -3,11 +3,15 @@ package ci.digitalacademy.monetab.services.Impl;
 import ci.digitalacademy.monetab.models.Student;
 import ci.digitalacademy.monetab.repository.StudentRepository;
 import ci.digitalacademy.monetab.services.StudentService;
+import ci.digitalacademy.monetab.services.dto.StudentDTO;
+import ci.digitalacademy.monetab.services.mapper.StudentMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
@@ -15,11 +19,15 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
     @Override
-    public Student save(Student student) {
-        return studentRepository.save(student);
+    public StudentDTO save(StudentDTO studentDTO) {
+        log.debug("Request to save Student : {}", studentDTO);
+        Student student= StudentMapper.toEntity(studentDTO);
+        student=studentRepository.save(student);
+        return StudentMapper.toStudentDTO(student);
+
     }
 
-    @Override
+   /* @Override
     public Student update(Student student) {
         Optional<Student> studentOptional = studentRepository.findById(student.getId());
         if (studentOptional.isPresent()) {
@@ -30,16 +38,35 @@ public class StudentServiceImpl implements StudentService {
         } else {
             throw new IllegalArgumentException("Student not found");
         }
+    }*/
+
+    @Override
+
+    public StudentDTO update(StudentDTO studentDTO) {
+        log.debug("Request to update Student : {}", studentDTO);
+            Student student= StudentMapper.toEntity(studentDTO);
+            student=studentRepository.save(student);
+            StudentMapper.toStudentDTO(student);
+            return findOne(studentDTO.getId()).map(existingStudent ->{
+                existingStudent.setMatricule(studentDTO.getMatricule());
+                existingStudent.setClasse(studentDTO.getClasse());
+                existingStudent.setGenre(studentDTO.getGenre());
+                return save(existingStudent);
+
+            }).orElseThrow(() -> new IllegalArgumentException("Student not find"));
     }
 
     @Override
-    public Optional<Student> findOne(Long id) {
-        return studentRepository.findById(id);
+    public Optional<StudentDTO> findOne(Long id) {
+        log.debug("Request to find Student : {}", id);
+        return studentRepository.findById(id).map(StudentMapper::toStudentDTO);
     }
 
     @Override
-    public List<Student> findAll() {
-        return studentRepository.findAll();
+    public List<StudentDTO> findAll() {
+        return studentRepository.findAll().stream().map(student ->{
+            return StudentMapper.toStudentDTO(student);
+        } ).toList();
     }
 
     @Override
